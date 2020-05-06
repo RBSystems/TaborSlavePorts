@@ -45,6 +45,7 @@ namespace TaborSlavePorts {
 		}
 
 		private void RegisterExpansionComports(){
+			this.PrintFunctionName("RegisterExpansionComports");
 			var card = new C3com3(2, ProAvControlSystem.ControlSystem);
 			card.Register();
 			card.ComPorts[1].SetComPortSpec(FutureAutomationProjectorDropSerialSpec.Spec());
