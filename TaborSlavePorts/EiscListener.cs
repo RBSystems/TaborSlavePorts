@@ -10,7 +10,8 @@ namespace TaborSlavePorts{
 		}
 
 		private static void MasterProcessorLinkOnSigChange(BasicTriList currentDevice_, SigEventArgs args_){
-			if (args_.Sig.Type == eSigType.String){
+			if (args_.Sig.Type == eSigType.String) {
+				"EiscSerialData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.StringValue);
 				switch (args_.Sig.Number){
 					case SerialJoins.ComPort1:
 						ProAvControlSystem.ComPorts[1].Send(args_.Sig.StringValue);
@@ -36,6 +37,7 @@ namespace TaborSlavePorts{
 				}
 			}
 			if (args_.Sig.Type == eSigType.Bool){
+				"EiscBoolData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.BoolValue);
 				switch (args_.Sig.Number){
 					case BoolJoins.Relay1:
 						if (args_.Sig.BoolValue){
@@ -104,6 +106,7 @@ namespace TaborSlavePorts{
 				}
 			}
 			if (args_.Sig.Type == eSigType.UShort){
+				"EiscUShortData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.UShortValue);
 				switch (args_.Sig.Number){
 					default:
 					"Eisc Ushort Input has no joins registered".PrintLine();
