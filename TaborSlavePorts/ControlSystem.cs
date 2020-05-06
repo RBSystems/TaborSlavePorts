@@ -23,8 +23,8 @@ namespace TaborSlavePorts {
 			AddProjectConsoleCommands();
 		}
 
-		public object StartProgram(object _){
-
+		public object StartProgram(object _) {
+			var systemInitialiser = new SystemInitialiser();
 			BootManager.BootComplete();
 			return null;
 		}

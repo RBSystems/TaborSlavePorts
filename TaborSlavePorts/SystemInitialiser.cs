@@ -11,7 +11,7 @@ using proAV.Devices.RadioTuners.Rotel;
 namespace TaborSlavePorts {
 	public class SystemInitialiser {
 
-		public SystemInitialiser(){
+		public SystemInitialiser() {
 			this.PrintFunctionName("Initialisation started");
 			var systemInitialisationActions = new List<Action>{
 				CreateEisc,
