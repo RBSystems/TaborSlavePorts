@@ -26,6 +26,7 @@ namespace TaborSlavePorts {
 				bootFunction();
 				BootManager.WriteBootPositionToConsole(index + 1);
 			}
+			var listener = new ComportListener();
 		}
 
 		private void CreateEisc(){
@@ -38,10 +39,10 @@ namespace TaborSlavePorts {
 		private void RegisterInternalComports(){
 			this.PrintFunctionName("RegisterInternalComports");
 			foreach (var comPort in ProAvControlSystem.ComPorts){
-				comPort.Value.SetComPortSpec(RotelSerialSpec.Spec());
 				comPort.Value.Register();
+				comPort.Value.SetComPortSpec(RotelSerialSpec.Spec());
 			}
-			var listener = new ComportListener();
+			
 		}
 
 		private void RegisterExpansionComports(){
