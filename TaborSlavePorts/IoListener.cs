@@ -1,6 +1,6 @@
-﻿using System;
-using Crestron.SimplSharpPro;
+﻿using Crestron.SimplSharpPro;
 using proAV.Core;
+using proAV.Core.Extensions;
 
 namespace TaborSlavePorts {
 	public class IoListener {
@@ -12,33 +12,32 @@ namespace TaborSlavePorts {
 		}
 
 		private static void VersiPortOnVersiportChange(Versiport port_, VersiportEventArgs args_) {
-			if (port_.DigitalIn) {
-				switch (port_.ID) {
-					case 1:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].BoolValue = false;
-						break;
-					case 2:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io2Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io2Fb].BoolValue = false;
-						break;
-					case 3:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io3Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io3Fb].BoolValue = false;
-						break;
-					case 4:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].BoolValue = false;
-						break;
-					case 5:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io5Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io5Fb].BoolValue = false;
-						break;
-					case 6:
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io6Fb].BoolValue = true;
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io6Fb].BoolValue = false;
-						break;
-				}
+			"VersiPort {0} Event {1}".PrintLine(port_.ID, args_.Event.ToString());
+			switch (port_.ID) {
+				case 1:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io1Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
+					break;
+				case 2:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io2Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io2Fb].Pulse(1000);
+					break;
+				case 3:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io3Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io3Fb].Pulse(1000);
+					break;
+				case 4:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io4Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].Pulse(1000);
+					break;
+				case 5:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io5Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io5Fb].Pulse(1000);
+					break;
+				case 6:
+					"Setting Bool {0} to {1}".PrintLine(BoolJoins.Io6Fb, args_.Event == eVersiportEvent.DigitalInChange);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io6Fb].Pulse(1000);
+					break;
 			}
 		}
 	}
