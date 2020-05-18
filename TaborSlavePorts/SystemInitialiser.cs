@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using Crestron.SimplSharpPro;
 using Crestron.SimplSharpPro.ThreeSeriesCards;
-using Crestron.SimplSharpProInternal;
 using proAV.Core;
+using proAV.Core.Devices.Lifts.FutureAutomation;
+using proAV.Core.Devices.RadioTuners.Rotel;
 using proAV.Core.Extensions;
-using proAV.Devices.Lifts.FutureAutomation;
-using proAV.Devices.RadioTuners.Rotel;
 
 namespace TaborSlavePorts {
 	public class SystemInitialiser {
