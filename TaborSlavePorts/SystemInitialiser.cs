@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Crestron.SimplSharpPro;
 using Crestron.SimplSharpPro.ThreeSeriesCards;
 using proAV.Core;
+using proAV.Core.Devices.Blinds.SomfyRts;
 using proAV.Core.Devices.Lifts.FutureAutomation;
 using proAV.Core.Devices.RadioTuners.Rotel;
 using proAV.Core.Extensions;
+using proAV.Core.Interfaces.UserInterface;
+using proAV.Core.Net;
 
 namespace TaborSlavePorts {
 	public class SystemInitialiser {
@@ -17,7 +20,8 @@ namespace TaborSlavePorts {
 				RegisterInternalComports,
 				RegisterExpansionComports,
 				RegisterInternalRelayPorts,
-				RegisterAndSetIoPorts
+				RegisterAndSetIoPorts,
+				CreateSomfyController
 			};
 			BootManager.BootFunctions.AddRange(systemInitialisationActions);
 			foreach (var bootFunction in BootManager.BootFunctions) {
@@ -28,41 +32,45 @@ namespace TaborSlavePorts {
 			var listener = new ComportListener();
 		}
 
-		private void CreateEisc(){
+		private void CreateEisc() {
 			this.PrintFunctionName("CreateEISC");
 			var eiscHandler = new EiscHandler();
 			ControlSystem.MasterProcessorLink = eiscHandler.Create();
 			var listener = new EiscListener();
 		}
 
-		private void RegisterInternalComports(){
+		private void RegisterInternalComports() {
 			this.PrintFunctionName("RegisterInternalComports");
-			foreach (var comPort in ProAvControlSystem.ComPorts){
+			foreach (var comPort in ProAvControlSystem.ComPorts) {
 				comPort.Value.Register();
 				comPort.Value.SetComPortSpec(RotelSerialSpec.Spec());
 			}
-			
+
 		}
 
-		private void RegisterExpansionComports(){
+		private void RegisterExpansionComports() {
 			this.PrintFunctionName("RegisterExpansionComports");
 			var card = new C3com3(2, ProAvControlSystem.ControlSystem);
 			card.Register();
-			card.ComPorts[1].SetComPortSpec(FutureAutomationProjectorDropSerialSpec.Spec());
 			card.ComPorts[1].Register();
+			card.ComPorts[1].SetComPortSpec(FutureAutomationProjectorDropSerialSpec.Spec());
 			ControlSystem.ExpansionCard = card;
 		}
 
-		private void RegisterInternalRelayPorts(){
+		private void CreateSomfyController() {
+			ControlSystem.WestAwning = new SomfyRelayAwning(ProAvControlSystem.ControlSystem, 1, 2);
+		}
+
+		private void RegisterInternalRelayPorts() {
 			this.PrintFunctionName("RegisterRelayPorts");
-			foreach (var relay in ProAvControlSystem.ControlSystem.RelayPorts){
+			foreach (var relay in ProAvControlSystem.ControlSystem.RelayPorts) {
 				relay.Register();
 			}
 		}
 
-		private void RegisterAndSetIoPorts(){
+		private void RegisterAndSetIoPorts() {
 			this.PrintFunctionName("RegisterAndSetIoPorts");
-			foreach (var versiport in ProAvControlSystem.ControlSystem.VersiPorts){
+			foreach (var versiport in ProAvControlSystem.ControlSystem.VersiPorts) {
 				versiport.Register();
 				versiport.SetVersiportConfiguration(eVersiportConfiguration.DigitalInput);
 			}

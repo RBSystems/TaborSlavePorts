@@ -12,11 +12,15 @@ namespace TaborSlavePorts {
 			eisc.Register();
 			eisc.OnlineStatusChange += EiscOnOnlineStatusChange;
 			ConsoleCommands.Create(x_ => {
-				eisc.BooleanInput[17].Pulse(1000);
-			}, "testbool", "");
+				uint join;
+				x_.TryParseToUint(out join);
+				eisc.BooleanInput[join].Pulse(1000);
+			}, "testbool", "testbool joinnumber");
 			ConsoleCommands.Create(x_ => {
-				eisc.StringInput[1].StringValue = DateTime.Now.ToLongTimeString();
-			}, "teststring", "");
+				uint join;
+				x_.TryParseToUint(out join);
+				eisc.StringInput[x_].StringValue = DateTime.Now.ToLongTimeString();
+			}, "testserial", "testserial joinnumber");
 			return eisc;
 		}
 

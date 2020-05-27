@@ -59,13 +59,9 @@
       <HintPath>..\..\..\..\..\..\ProgramData\Crestron\SDK\SSPDevices\Crestron.SimplSharpPro.ThreeSeriesCards.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="proAV.Core, Version=1.0.0.27542, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="proAV.Core, Version=1.0.0.21756, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\LibraryDLLs\proAV.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="proAV.Devices, Version=1.0.0.27829, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\LibraryDLLs\proAV.Devices.dll</HintPath>
+      <HintPath>..\..\Provectus\proAV.Core\bin\Debug\proAV.Core.dll</HintPath>
     </Reference>
     <Reference Include="SimplSharpCustomAttributesInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1099c178b3b54c3b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,6 +92,7 @@
     <Compile Include="EiscListener.cs" />
     <Compile Include="IoListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SomfyRelayAwning.cs" />
     <Compile Include="SystemInitialiser.cs" />
     <None Include="Properties\ControlSystem.cfg" />
   </ItemGroup>

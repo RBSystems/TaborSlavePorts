@@ -17,6 +17,10 @@
 		public const uint Io6Fb = 22;
 		public const uint Io7Fb = 23;
 		public const uint Io8Fb = 24;
+
+		public const uint WestAwningOpen = 100;
+		public const uint WestAwningClose = 101;
+		public const uint WestAwningStop = 102;
 	}
 
 	public class SerialJoins{

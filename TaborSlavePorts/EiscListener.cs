@@ -3,16 +3,16 @@ using Crestron.SimplSharpPro.DeviceSupport;
 using proAV.Core;
 using proAV.Core.Extensions;
 
-namespace TaborSlavePorts{
-	public class EiscListener{
-		public EiscListener(){
+namespace TaborSlavePorts {
+	public class EiscListener {
+		public EiscListener() {
 			ControlSystem.MasterProcessorLink.SigChange += MasterProcessorLinkOnSigChange;
 		}
 
-		private static void MasterProcessorLinkOnSigChange(BasicTriList currentDevice_, SigEventArgs args_){
+		private static void MasterProcessorLinkOnSigChange(BasicTriList currentDevice_, SigEventArgs args_) {
 			if (args_.Sig.Type == eSigType.String) {
 				"EiscSerialData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.StringValue);
-				switch (args_.Sig.Number){
+				switch (args_.Sig.Number) {
 					case SerialJoins.ComPort1:
 						ProAvControlSystem.ComPorts[1].Send(args_.Sig.StringValue);
 						break;
@@ -36,14 +36,14 @@ namespace TaborSlavePorts{
 						break;
 				}
 			}
-			if (args_.Sig.Type == eSigType.Bool){
+			if (args_.Sig.Type == eSigType.Bool) {
 				"EiscBoolData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.BoolValue);
-				switch (args_.Sig.Number){
+				switch (args_.Sig.Number) {
 					case BoolJoins.Relay1:
-						if (args_.Sig.BoolValue){
+						if (args_.Sig.BoolValue) {
 							ProAvControlSystem.ControlSystem.RelayPorts[1].Close();
 						}
-						else{
+						else {
 							ProAvControlSystem.ControlSystem.RelayPorts[1].Open();
 						}
 						break;
@@ -103,13 +103,28 @@ namespace TaborSlavePorts{
 							ProAvControlSystem.ControlSystem.RelayPorts[8].Open();
 						}
 						break;
+					case BoolJoins.WestAwningOpen:
+						if (args_.Sig.BoolValue) {
+							ControlSystem.WestAwning.Open();
+						}
+						break;
+					case BoolJoins.WestAwningClose:
+						if (args_.Sig.BoolValue) {
+							ControlSystem.WestAwning.Close();
+						}
+						break;
+					case BoolJoins.WestAwningStop:
+						if (args_.Sig.BoolValue) {
+							ControlSystem.WestAwning.Stop();
+						}
+						break;
 				}
 			}
-			if (args_.Sig.Type == eSigType.UShort){
+			if (args_.Sig.Type == eSigType.UShort) {
 				"EiscUShortData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.UShortValue);
-				switch (args_.Sig.Number){
+				switch (args_.Sig.Number) {
 					default:
-					"Eisc Ushort Input has no joins registered".PrintLine();
+						"Eisc Ushort Input has no joins registered".PrintLine();
 						break;
 				}
 			}

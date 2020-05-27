@@ -14,6 +14,7 @@ namespace TaborSlavePorts {
 		public List<Thread> ProgramThreads { get; set; }
 		public static EthernetIntersystemCommunications MasterProcessorLink { get; set; }
 		public static C3com3 ExpansionCard { get; set; }
+		public static SomfyRelayAwning WestAwning;
 
 		public override void Initialise(){
 			ProgramUpdateChecker.AutoUpdateProgram = true;
