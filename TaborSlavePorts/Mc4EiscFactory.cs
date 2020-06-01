@@ -6,7 +6,7 @@ using proAV.Core.Extensions;
 using proAV.Core.Utilities;
 
 namespace TaborSlavePorts {
-	public class EiscHandler {
+	public class Mc4EiscFactory {
 		public EthernetIntersystemCommunications Create() {
 			var eisc = new EthernetIntersystemCommunications(0x09, "10.51.10.112", ProAvControlSystem.ControlSystem);
 			eisc.Register();

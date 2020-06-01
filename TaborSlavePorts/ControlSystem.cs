@@ -6,6 +6,7 @@ using Crestron.SimplSharpPro.EthernetCommunication;
 using Crestron.SimplSharpPro.ThreeSeriesCards;
 using proAV.Core;
 using proAV.Core.Utilities;
+using TaborSlavePorts.PortListeners;
 
 namespace TaborSlavePorts {
 	public class ControlSystem : ProAvControlSystem{
@@ -15,6 +16,9 @@ namespace TaborSlavePorts {
 		public static EthernetIntersystemCommunications MasterProcessorLink { get; set; }
 		public static C3com3 ExpansionCard { get; set; }
 		public static SomfyRelayAwning WestAwning;
+
+		private ComportListener _comportListener;
+		private IoListener _ioListener;
 
 		public override void Initialise(){
 			ProgramUpdateChecker.AutoUpdateProgram = true;
@@ -26,6 +30,9 @@ namespace TaborSlavePorts {
 
 		public object StartProgram(object _) {
 			var systemInitialiser = new SystemInitialiser();
+			_comportListener = new ComportListener();
+			_ioListener = new IoListener();
+
 			BootManager.BootComplete();
 			return null;
 		}

@@ -1,5 +1,5 @@
 ﻿namespace TaborSlavePorts {
-	public static class BoolJoins{
+	public static class BoolJoins {
 		public const uint Relay1 = 1;
 		public const uint Relay2 = 2;
 		public const uint Relay3 = 3;
@@ -23,7 +23,7 @@
 		public const uint WestAwningStop = 102;
 	}
 
-	public class SerialJoins{
+	public class SerialJoins {
 		public const uint ComPort1 = 1;
 		public const uint ComPort2 = 2;
 		public const uint ComPort3 = 3;
@@ -33,7 +33,7 @@
 		public const uint ComPort7 = 7;
 	}
 
-	public class AnalogJoins{
-		
+	public class AnalogJoins {
+
 	}
 }

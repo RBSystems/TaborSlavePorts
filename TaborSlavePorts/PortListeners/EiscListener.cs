@@ -3,7 +3,7 @@ using Crestron.SimplSharpPro.DeviceSupport;
 using proAV.Core;
 using proAV.Core.Extensions;
 
-namespace TaborSlavePorts {
+namespace TaborSlavePorts.PortListeners {
 	public class EiscListener {
 		public EiscListener() {
 			ControlSystem.MasterProcessorLink.SigChange += MasterProcessorLinkOnSigChange;
@@ -11,7 +11,7 @@ namespace TaborSlavePorts {
 
 		private static void MasterProcessorLinkOnSigChange(BasicTriList currentDevice_, SigEventArgs args_) {
 			if (args_.Sig.Type == eSigType.String) {
-				"EiscSerialData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.StringValue);
+				"Incoming <<< EiscSerialData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.StringValue);
 				switch (args_.Sig.Number) {
 					case SerialJoins.ComPort1:
 						ProAvControlSystem.ComPorts[1].Send(args_.Sig.StringValue);
@@ -37,7 +37,7 @@ namespace TaborSlavePorts {
 				}
 			}
 			if (args_.Sig.Type == eSigType.Bool) {
-				"EiscBoolData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.BoolValue);
+				"Incoming <<< EiscBoolData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.BoolValue);
 				switch (args_.Sig.Number) {
 					case BoolJoins.Relay1:
 						if (args_.Sig.BoolValue) {
@@ -121,7 +121,7 @@ namespace TaborSlavePorts {
 				}
 			}
 			if (args_.Sig.Type == eSigType.UShort) {
-				"EiscUShortData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.UShortValue);
+				"Incoming <<< EiscUShortData [{0}]: {1}".PrintLine(args_.Sig.Number, args_.Sig.UShortValue);
 				switch (args_.Sig.Number) {
 					default:
 						"Eisc Ushort Input has no joins registered".PrintLine();
@@ -130,4 +130,27 @@ namespace TaborSlavePorts {
 			}
 		}
 	}
+
+	//Bool Joins
+	//Relay1 = 1;
+	//Relay2 = 2;
+	//Relay3 = 3;
+	//Relay4 = 4;
+	//Relay5 = 5;
+	//Relay6 = 6;
+	//Relay7 = 7;
+	//Relay8 = 8;
+	//
+	//Io1Fb = 17;
+	//Io2Fb = 18;
+	//Io3Fb = 19;
+	//Io4Fb = 20;
+	//Io5Fb = 21;
+	//Io6Fb = 22;
+	//Io7Fb = 23;
+	//Io8Fb = 24;
+	//
+	//WestAwningOpen = 100;
+	//WestAwningClose = 101;
+	//WestAwningStop = 102;
 }
