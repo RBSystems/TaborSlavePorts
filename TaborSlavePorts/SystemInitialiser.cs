@@ -7,6 +7,7 @@ using proAV.Core.Devices.Lifts.FutureAutomation;
 using proAV.Core.Devices.RadioTuners.Rotel;
 using proAV.Core.Extensions;
 using TaborSlavePorts.PortListeners;
+using proAV.Core.Devices.Lexicon;
 
 namespace TaborSlavePorts {
 	public class SystemInitialiser {
@@ -52,7 +53,7 @@ namespace TaborSlavePorts {
 				comport.Register();
 			}
 			card.Register();
-			card.ComPorts[1].SetComPortSpec(FutureAutomationProjectorDropSerialSpec.Spec());
+			card.ComPorts[1].SetComPortSpec(LexiconSerialSpec.Spec());
 			ControlSystem.ExpansionCard = card;
 		}
 
