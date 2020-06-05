@@ -1,31 +1,34 @@
 ﻿using Crestron.SimplSharpPro;
-using proAV.Core.Devices.Blinds;
 using proAV.Core.Framework;
 
 namespace TaborSlavePorts {
-	public class SomfyRelayAwning : CrestronRelayControlledMotor {
-		private ProAvRelay OpenR;
-		private ProAvRelay CloseR;
+	public class SomfyRelayAwning {
+		protected Relay OpenRelay;
+		protected Relay CloseRelay;
+		private readonly ProAvRelay _openR;
+		private readonly ProAvRelay _closeR;
 
-		public SomfyRelayAwning(IRelayPorts device_, uint openRelay_, uint closeRelay_)
-			: base(device_, openRelay_, closeRelay_) {
-			OpenR = new ProAvRelay(OpenRelay);
-			OpenR.PulseCloseOpen = true;
-			CloseR = new ProAvRelay(CloseRelay);
-			CloseR.PulseCloseOpen = true;
+		public SomfyRelayAwning(IRelayPorts device_, uint openRelay_, uint closeRelay_) {
+			OpenRelay = device_.RelayPorts[openRelay_];
+			CloseRelay = device_.RelayPorts[closeRelay_];
+			OpenRelay.Register();
+			CloseRelay.Register();
+
+			_openR = new ProAvRelay(OpenRelay) { PulseCloseOpen = true };
+			_closeR = new ProAvRelay(CloseRelay) { PulseCloseOpen = true };
 		}
 
 		public void Open() {
-			OpenR.Pulse();
+			_openR.Pulse();
 		}
 
 		public void Close() {
-			CloseR.Pulse();
+			_closeR.Pulse();
 		}
 
 		public void Stop() {
-			OpenR.Pulse();
-			CloseR.Pulse();
+			_openR.Pulse();
+			_closeR.Pulse();
 		}
 	}
 }
