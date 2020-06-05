@@ -47,7 +47,7 @@ namespace TaborSlavePorts {
 
 		private void Com3Comports() {
 			this.PrintFunctionName("Com3Comports");
-			var card = new C3com3(2, ProAvControlSystem.ControlSystem);
+			var card = new C3com3(1, ProAvControlSystem.ControlSystem);
 			foreach (var comport in card.ComPorts) {
 				comport.Register();
 			}
