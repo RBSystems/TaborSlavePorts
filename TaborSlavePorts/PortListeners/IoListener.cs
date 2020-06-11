@@ -14,10 +14,9 @@ namespace TaborSlavePorts.PortListeners {
 			"VersiPort {0} Event {1} DigitalIn {2} DigitalOut {3}".PrintLine(port_.ID, args_.Event.ToString(), port_.DigitalIn, port_.DigitalIn);
 			switch (port_.ID) {
 				case 1:
-					if (!port_.DigitalIn) {
-						"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io1Fb);
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
-					}
+					"Outgoing >>> EiscBoolValue: {1} [{0}]".PrintLine(BoolJoins.Io1Fb, port_.DigitalIn);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].BoolValue = port_.DigitalIn;
+					//ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
 					break;
 				case 2:
 					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io2Fb);
@@ -30,10 +29,9 @@ namespace TaborSlavePorts.PortListeners {
 					}
 					break;
 				case 4:
-					if (!port_.DigitalIn) {
-						"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io4Fb);
-						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].Pulse(1000);
-					}
+					"Outgoing >>> EiscBoolValue: {1} [{0}]".PrintLine(BoolJoins.Io4Fb, port_.DigitalIn);
+					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].BoolValue = port_.DigitalIn;
+					//ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].Pulse(1000);
 					break;
 				case 5:
 					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io5Fb);
