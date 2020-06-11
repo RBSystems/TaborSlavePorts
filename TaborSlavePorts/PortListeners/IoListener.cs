@@ -11,11 +11,13 @@ namespace TaborSlavePorts.PortListeners {
 		}
 
 		private static void VersiPortOnVersiportChange(Versiport port_, VersiportEventArgs args_) {
-			"VersiPort {0} Event {1}".PrintLine(port_.ID, args_.Event.ToString());
+			"VersiPort {0} Event {1} DigitalIn {2} DigitalOut {3}".PrintLine(port_.ID, args_.Event.ToString(), port_.DigitalIn, port_.DigitalIn);
 			switch (port_.ID) {
 				case 1:
-					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io1Fb);
-					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
+					if (!port_.DigitalIn) {
+						"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io1Fb);
+						ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
+					}
 					break;
 				case 2:
 					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io2Fb);

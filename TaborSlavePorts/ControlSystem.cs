@@ -20,7 +20,7 @@ namespace TaborSlavePorts {
 		private ComportListener _comportListener;
 		private IoListener _ioListener;
 
-		public override void Initialise(){
+		protected override void StartProgram(){
 			ProgramUpdateChecker.AutoUpdateProgram = true;
 			ProgramThreads = new List<Thread>();
 			ProgramThreads.Add(ProgramThread = new Thread(StartProgram, null, Thread.eThreadStartOptions.Running));

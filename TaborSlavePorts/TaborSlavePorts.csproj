@@ -59,9 +59,9 @@
       <HintPath>..\..\..\..\..\..\ProgramData\Crestron\SDK\SSPDevices\Crestron.SimplSharpPro.ThreeSeriesCards.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="proAV.Core, Version=1.0.0.21756, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="proAV.Core, Version=1.0.0.28995, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Provectus\proAV.Core\bin\Debug\proAV.Core.dll</HintPath>
+      <HintPath>..\..\Provectus\proAV.Core\bin\3Series\Debug\proAV.Core.dll</HintPath>
     </Reference>
     <Reference Include="SimplSharpCustomAttributesInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1099c178b3b54c3b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
