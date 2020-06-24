@@ -16,7 +16,6 @@ namespace TaborSlavePorts.PortListeners {
 				case 1:
 					"Outgoing >>> EiscBoolValue: {1} [{0}]".PrintLine(BoolJoins.Io1Fb, port_.DigitalIn);
 					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].BoolValue = port_.DigitalIn;
-					//ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io1Fb].Pulse(1000);
 					break;
 				case 2:
 					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io2Fb);
@@ -31,7 +30,6 @@ namespace TaborSlavePorts.PortListeners {
 				case 4:
 					"Outgoing >>> EiscBoolValue: {1} [{0}]".PrintLine(BoolJoins.Io4Fb, port_.DigitalIn);
 					ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].BoolValue = port_.DigitalIn;
-					//ControlSystem.MasterProcessorLink.BooleanInput[BoolJoins.Io4Fb].Pulse(1000);
 					break;
 				case 5:
 					"Outgoing >>> EiscBoolPulse [{0}]".PrintLine(BoolJoins.Io5Fb);
